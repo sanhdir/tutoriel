@@ -27,6 +27,8 @@ public class KafkaStreamConfig {
         config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         config.put(StreamsConfig.APPLICATION_ID_CONFIG, applicationId);
+        config.put( StreamsConfig.REPLICATION_FACTOR_CONFIG,1);
+
         return new StreamsBuilderFactoryBean( new KafkaStreamsConfiguration(config));
     }
 
