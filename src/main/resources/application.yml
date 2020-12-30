@@ -1,1 +1,7 @@
+spring:
+  application:
+    name: tutoriel
+  elasticsearch:
+    host: localhost
+    port: 9200
 

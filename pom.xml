@@ -6,24 +6,26 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>kafka-stream</artifactId>
+	<artifactId>tutorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tutoriel</name>
-	<description>Tutoriel pour Kafka Stream</description>
+	<name>tutorial</name>
+	<description>Tutoriel des articles publiés dans sanhdire.com</description>
 
 	<properties>
 		<java.version>11</java.version>
 		<kafka.stream.version>2.6.0</kafka.stream.version>
 		<kafka.version>2.6.0</kafka.version>
+		<spring.elasticsearch.version>4.0.1.RELEASE</spring.elasticsearch.version>
+		<elasticsearch.version>7.10.1</elasticsearch.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -38,14 +40,29 @@
 			<optional>false</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka-streams</artifactId>
-			<version>${kafka.stream.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 			<version>${kafka.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-elasticsearch</artifactId>
+			<version>${spring.elasticsearch.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>${elasticsearch.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+			<version>${elasticsearch.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-streams</artifactId>
+			<version>${kafka.stream.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,11 +79,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka</artifactId>
-			<version>2.6.4</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>
