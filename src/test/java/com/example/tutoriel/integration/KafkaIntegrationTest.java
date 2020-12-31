@@ -8,6 +8,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
@@ -26,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 @EmbeddedKafka
+@TestConfiguration("KafkaStreamConfig.class")
 public class KafkaIntegrationTest {
 
     @Autowired

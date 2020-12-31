@@ -12,4 +12,8 @@ public class CarModel {
     @Field(type= FieldType.Text)
     private String carModelName;
 
+    public  CarModel(String carModelName){
+        this.carModelName = carModelName;
+    }
+
 }

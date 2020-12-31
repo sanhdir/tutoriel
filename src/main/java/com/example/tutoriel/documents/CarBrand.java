@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 
-@Document(indexName = "car_brands", createIndex = false)
+@Document(indexName = "car_brands", replicas = 0)
 @Getter
 @Setter
 public class CarBrand {
