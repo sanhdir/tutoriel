@@ -1,4 +1,4 @@
-package com.example.tutoriel.documents;
+package com.example.tutoriel.elasticsearch.documents;
 
 import lombok.Getter;
 import lombok.Setter;

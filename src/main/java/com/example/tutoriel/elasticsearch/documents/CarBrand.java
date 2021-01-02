@@ -1,4 +1,4 @@
-package com.example.tutoriel.documents;
+package com.example.tutoriel.elasticsearch.documents;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 
-@Document(indexName = "car_brands", replicas = 0)
+@Document(indexName = "car_brands", replicas = 0, createIndex = false)
 @Getter
 @Setter
 public class CarBrand {
