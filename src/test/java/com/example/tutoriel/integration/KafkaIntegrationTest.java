@@ -22,6 +22,7 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -59,9 +60,11 @@ public class KafkaIntegrationTest {
         Map<String, Object> configs = new HashMap<>(KafkaTestUtils.producerProps(embeddedKafkaBroker));
         Producer<String, String> producer = new DefaultKafkaProducerFactory<>(configs, new StringSerializer(), new StringSerializer()).createProducer();
         producer.send(new ProducerRecord<>(TOPIC, "key", "someValue"));
-
         // Assert
         ConsumerRecord<String, String> record = records.poll(100, TimeUnit.MILLISECONDS);
+        CountDownLatch count = new CountDownLatch(200);
+        count.countDown();
+        count.await(200, TimeUnit.MILLISECONDS);
         Assertions.assertEquals("key",record.key());
         Assertions.assertEquals("someValue",record.value());
     }
