@@ -8,6 +8,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
@@ -21,11 +22,13 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 @EmbeddedKafka
+@TestConfiguration("KafkaStreamConfig.class")
 public class KafkaIntegrationTest {
 
     @Autowired
@@ -57,9 +60,11 @@ public class KafkaIntegrationTest {
         Map<String, Object> configs = new HashMap<>(KafkaTestUtils.producerProps(embeddedKafkaBroker));
         Producer<String, String> producer = new DefaultKafkaProducerFactory<>(configs, new StringSerializer(), new StringSerializer()).createProducer();
         producer.send(new ProducerRecord<>(TOPIC, "key", "someValue"));
-
         // Assert
         ConsumerRecord<String, String> record = records.poll(100, TimeUnit.MILLISECONDS);
+        CountDownLatch count = new CountDownLatch(200);
+        count.countDown();
+        count.await(200, TimeUnit.MILLISECONDS);
         Assertions.assertEquals("key",record.key());
         Assertions.assertEquals("someValue",record.value());
     }
