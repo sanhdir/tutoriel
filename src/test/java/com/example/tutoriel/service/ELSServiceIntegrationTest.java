@@ -20,16 +20,15 @@ import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.Query;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @TestConfiguration("ElasticSearchConfig.class")
-@RunWith(SpringRunner.class)
 @Slf4j
 public class ELSServiceIntegrationTest {
 
