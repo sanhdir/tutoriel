@@ -1,4 +1,4 @@
-package com.example.tutoriel.processor;
+package com.example.tutoriel.kafka.processor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serde;
